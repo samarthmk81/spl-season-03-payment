@@ -4,78 +4,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SPL Season 03 Registration</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  padding:20px;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#06142b,#173a65);
-  color:white;
-  text-align:center;
+margin:0;padding:20px;font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#06142b,#173a65);
+color:white;text-align:center
 }
-
 .card{
-  max-width:450px;
-  margin:20px auto;
-  padding:25px;
-  background:#102446;
-  border:2px solid #d4af37;
-  border-radius:20px;
-  box-shadow:0 0 20px #0005;
+max-width:450px;margin:20px auto;padding:25px;
+background:#102446;border:2px solid #d4af37;
+border-radius:20px;box-shadow:0 0 20px #0005
 }
-
 h1,h2{color:#ffd700}
-
-.price{
-  font-size:40px;
-  font-weight:bold;
-  color:#ffd700;
-  margin:20px;
-}
-
+.price{font-size:40px;font-weight:bold;color:#ffd700;margin:20px}
 button{
-  width:100%;
-  padding:16px;
-  margin:10px 0;
-  border:none;
-  border-radius:12px;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
+width:100%;padding:16px;margin:10px 0;border:none;
+border-radius:12px;font-size:17px;font-weight:bold;cursor:pointer
 }
-
 .pay{background:#ffd700;color:#07152e}
 .copy{background:white;color:#07152e}
 .register{background:#18b878;color:white}
-
-.small{
-  font-size:14px;
-  line-height:1.7;
-  color:#e5e5e5;
-}
-
+.small{font-size:14px;line-height:1.7;color:#e5e5e5}
 #status{color:#7dffb5;font-weight:bold}
-
-hr{
-  border:0;
-  border-top:1px solid #ffffff33;
-  margin:25px 0;
-}
-
-footer{
-  font-size:13px;
-  color:#ddd;
-}
+hr{border:0;border-top:1px solid #ffffff33;margin:25px 0}
+footer{font-size:13px;color:#ddd}
 </style>
 </head>
 
 <body>
-
 <div class="card">
 
 <h1>🏏 SPL SEASON 03</h1>
@@ -85,36 +44,27 @@ footer{
 <div class="price">₹200</div>
 <p>Registration Fee / नोंदणी शुल्क</p>
 
-<button class="pay" onclick="payPaytm()">
-💳 PAY USING PAYTM
-</button>
-
-<button class="copy" onclick="copyUPI()">
-📋 COPY UPI ID
-</button>
+<button class="pay" onclick="payUPI()">💳 PAY ₹200 NOW</button>
+<button class="copy" onclick="copyUPI()">📋 COPY UPI ID</button>
 
 <p id="status"></p>
 
 <p class="small">
-Paytm opens without a preset amount.
-Enter ₹200 manually.
-<br><br>
-Paytm उघडल्यानंतर ₹200 स्वतः टाका.
+UPI app will open. Enter ₹200 manually.
+<br>
+UPI ॲप उघडल्यानंतर ₹200 स्वतः टाका.
 </p>
 
 <hr>
 
 <h2>AFTER PAYMENT</h2>
-
 <p class="small">
-Complete the registration form and upload payment screenshot.
-<br><br>
+Complete registration and upload payment screenshot.
+<br>
 नोंदणी फॉर्म भरा आणि पेमेंट स्क्रीनशॉट अपलोड करा.
 </p>
 
-<button class="register" onclick="openForm()">
-📝 REGISTER NOW
-</button>
+<button class="register" onclick="openForm()">📝 REGISTER NOW</button>
 
 <hr>
 
@@ -124,9 +74,7 @@ Complete the registration form and upload payment screenshot.
 <hr>
 
 <footer>
-Swami Vivekanand Yuvak Sangh
-<br>
-Singinkop
+Swami Vivekanand Yuvak Sangh<br>Singinkop
 </footer>
 
 </div>
@@ -138,47 +86,34 @@ const UPI_ID = "9480265068-2@ybl";
 const FORM_URL =
 "https://docs.google.com/forms/d/e/1FAIpQLSd8dI-Fzdon-whGkqtD8OgU0WXJN4DtXCevl4Qd2fouG0rJ3A/viewform?usp=dialog";
 
-// PAYTM PAYMENT
-function payPaytm(){
-
+// OPEN STANDARD UPI LINK WITHOUT AMOUNT
+function payUPI(){
   const upiLink =
-    "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
-    "&pn=" + encodeURIComponent("SPL Season 03") +
-    "&cu=INR";
+    "upi://pay?pa=9480265068-2@ybl&pn=SPL%20Season%2003&cu=INR";
 
-  const paytmLink =
-    "paytmmp://pay?url=" + encodeURIComponent(upiLink);
-
-  window.location.href = paytmLink;
-
-  // Fallback if Paytm does not open
-  setTimeout(function(){
-    window.location.href = upiLink;
-  },1500);
-
+  window.location.href = upiLink;
 }
 
 // COPY UPI ID
 function copyUPI(){
-
-  navigator.clipboard.writeText(UPI_ID)
-  .then(()=>{
-    document.getElementById("status").innerText=
-    "UPI ID Copied Successfully!";
-  })
-  .catch(()=>{
-    document.getElementById("status").innerText=
-    "UPI ID: "+UPI_ID;
-  });
-
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(UPI_ID)
+    .then(()=>{
+      document.getElementById("status").innerText="UPI ID Copied!";
+    })
+    .catch(()=>{
+      document.getElementById("status").innerText="UPI ID: "+UPI_ID;
+    });
+  }else{
+    document.getElementById("status").innerText="UPI ID: "+UPI_ID;
+  }
 }
 
-// OPEN REGISTRATION FORM
+// OPEN FORM
 function openForm(){
   window.open(FORM_URL,"_blank");
 }
 
 </script>
-
 </body>
 </html>
