@@ -4,77 +4,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SPL Season 03 Registration</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-margin:0;padding:20px;font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#06142b,#173a65);
-color:white;text-align:center
+* {
+    box-sizing: border-box;
 }
-.card{
-max-width:450px;margin:20px auto;padding:25px;
-background:#102446;border:2px solid #d4af37;
-border-radius:20px;box-shadow:0 0 20px #0005
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #071e36, #123f65);
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
-h1,h2{color:#ffd700}
-.price{font-size:40px;font-weight:bold;color:#ffd700;margin:20px}
-button{
-width:100%;padding:16px;margin:10px 0;border:none;
-border-radius:12px;font-size:17px;font-weight:bold;cursor:pointer
+
+.container {
+    max-width: 450px;
+    margin: 35px auto;
+    padding: 25px;
+    background: white;
+    color: #222;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
-.pay{background:#ffd700;color:#07152e}
-.copy{background:white;color:#07152e}
-.register{background:#18b878;color:white}
-.small{font-size:14px;line-height:1.7;color:#e5e5e5}
-#status{color:#7dffb5;font-weight:bold}
-hr{border:0;border-top:1px solid #ffffff33;margin:25px 0}
-footer{font-size:13px;color:#ddd}
+
+h1 {
+    color: #0c4674;
+    font-size: 26px;
+}
+
+h2 {
+    color: #e67e22;
+}
+
+.fee {
+    font-size: 30px;
+    font-weight: bold;
+    color: #198754;
+    margin: 20px 0;
+}
+
+.upi {
+    background: #f1f5f9;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    word-break: break-all;
+    margin: 15px 0;
+}
+
+button, .button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.pay {
+    background: #138a48;
+    color: white;
+}
+
+.copy {
+    background: #2563eb;
+    color: white;
+}
+
+.register {
+    background: #e67e22;
+    color: white;
+}
+
+.instructions {
+    background: #fff7e6;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    line-height: 1.7;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+footer {
+    color: #666;
+    margin-top: 25px;
+    font-size: 13px;
+}
 </style>
 </head>
 
 <body>
-<div class="card">
 
-<h1>🏏 SPL SEASON 03</h1>
-<h2>PLAYER REGISTRATION</h2>
-<h3>खेळाडू नोंदणी</h3>
+<div class="container">
 
-<div class="price">₹200</div>
-<p>Registration Fee / नोंदणी शुल्क</p>
+<h1>🏏 SPL Season 03</h1>
+<h2>Player Registration</h2>
 
-<button class="pay" onclick="payUPI()">💳 PAY ₹200 NOW</button>
-<button class="copy" onclick="copyUPI()">📋 COPY UPI ID</button>
+<p>Welcome to SPL Season 03!</p>
 
-<p id="status"></p>
+<div class="fee">
+Registration Fee: ₹200
+</div>
 
-<p class="small">
-UPI app will open. Enter ₹200 manually.
-<br>
-UPI ॲप उघडल्यानंतर ₹200 स्वतः टाका.
-</p>
+<p><b>UPI ID</b></p>
+
+<div class="upi" id="upiId">
+9480265068-2@ybl
+</div>
+
+<!-- DIRECT UPI PAYMENT -->
+<button class="pay" onclick="payUPI()">
+💳 Pay Using UPI App
+</button>
+
+<!-- COPY UPI -->
+<button class="copy" onclick="copyUPI()">
+📋 Copy UPI ID
+</button>
+
+<div class="instructions">
+<b>Payment Instructions / पेमेंट सूचना</b>
+
+<ol>
+<li>Click Pay Using UPI App.</li>
+<li>Enter ₹200 manually.</li>
+<li>Complete payment.</li>
+<li>If payment declines, copy the UPI ID.</li>
+<li>Open any UPI app and pay manually using the UPI ID.</li>
+<li>Take a screenshot of successful payment.</li>
+<li>Click Register Now and upload payment screenshot.</li>
+</ol>
 
 <hr>
 
-<h2>AFTER PAYMENT</h2>
-<p class="small">
-Complete registration and upload payment screenshot.
-<br>
-नोंदणी फॉर्म भरा आणि पेमेंट स्क्रीनशॉट अपलोड करा.
-</p>
+<b>मराठी सूचना:</b>
 
-<button class="register" onclick="openForm()">📝 REGISTER NOW</button>
+<ol>
+<li>Pay Using UPI App वर क्लिक करा.</li>
+<li>₹200 रक्कम स्वतः भरा.</li>
+<li>पेमेंट पूर्ण करा.</li>
+<li>पेमेंट Decline झाल्यास UPI ID कॉपी करा.</li>
+<li>Google Pay / PhonePe / Paytm मध्ये UPI ID टाकून पेमेंट करा.</li>
+<li>पेमेंटचा Screenshot घ्या.</li>
+<li>Register Now वर क्लिक करून Screenshot अपलोड करा.</li>
+</ol>
+</div>
 
-<hr>
-
-<h2>🔥 BE READY, BOYS! 🔥</h2>
-<p>SPL Auction Coming Soon</p>
-
-<hr>
+<!-- GOOGLE FORM -->
+<a class="button register"
+href="https://docs.google.com/forms/d/e/1FAIpQLSd8dI-Fzdon-whGkqtD8OgU0WXJN4DtXCevl4Qd2fouG0rJ3A/viewform?usp=dialog"
+target="_blank">
+📝 Register Now
+</a>
 
 <footer>
-Swami Vivekanand Yuvak Sangh<br>Singinkop
+Swami Vivekanand Yuvak Sangh<br>
+Singinkop
 </footer>
 
 </div>
@@ -83,37 +177,27 @@ Swami Vivekanand Yuvak Sangh<br>Singinkop
 
 const UPI_ID = "9480265068-2@ybl";
 
-const FORM_URL =
-"https://docs.google.com/forms/d/e/1FAIpQLSd8dI-Fzdon-whGkqtD8OgU0WXJN4DtXCevl4Qd2fouG0rJ3A/viewform?usp=dialog";
+function payUPI() {
 
-// OPEN STANDARD UPI LINK WITHOUT AMOUNT
-function payUPI(){
-  const upiLink =
-    "upi://pay?pa=9480265068-2@ybl&pn=SPL%20Season%2003&cu=INR";
+    const upiLink =
+        "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
+        "&pn=" + encodeURIComponent("SPL Season 03") +
+        "&cu=INR";
 
-  window.location.href = upiLink;
+    window.location.href = upiLink;
 }
 
-// COPY UPI ID
-function copyUPI(){
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(UPI_ID)
-    .then(()=>{
-      document.getElementById("status").innerText="UPI ID Copied!";
-    })
-    .catch(()=>{
-      document.getElementById("status").innerText="UPI ID: "+UPI_ID;
-    });
-  }else{
-    document.getElementById("status").innerText="UPI ID: "+UPI_ID;
-  }
-}
+async function copyUPI() {
 
-// OPEN FORM
-function openForm(){
-  window.open(FORM_URL,"_blank");
+    try {
+        await navigator.clipboard.writeText(UPI_ID);
+        alert("UPI ID Copied Successfully!");
+    } catch (error) {
+        prompt("Copy UPI ID:", UPI_ID);
+    }
 }
 
 </script>
+
 </body>
 </html>
