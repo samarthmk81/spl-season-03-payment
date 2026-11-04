@@ -5,94 +5,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SPL Season 03 - Player Registration</title>
+<title>SPL Season 03 Registration</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+padding:20px;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#06142b,#173a65);
+color:white;
+text-align:center;
 }
 
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #06142b, #173a65);
-  color: white;
-  text-align: center;
+.card{
+max-width:450px;
+margin:20px auto;
+padding:25px;
+background:#102446;
+border:2px solid #d4af37;
+border-radius:20px;
 }
 
-.card {
-  max-width: 450px;
-  margin: 20px auto;
-  padding: 25px;
-  background: #102446;
-  border: 2px solid #d4af37;
-  border-radius: 20px;
-  box-shadow: 0 0 20px #0005;
+h1,h2{color:#ffd700}
+
+.price{
+font-size:40px;
+font-weight:bold;
+color:#ffd700;
+margin:20px;
 }
 
-h1 {
-  color: #ffd700;
-  font-size: 30px;
+button{
+width:100%;
+padding:16px;
+margin:10px 0;
+border:none;
+border-radius:12px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
 }
 
-h2 {
-  color: #ffd700;
+.pay{background:#ffd700;color:#07152e}
+.copy{background:white;color:#07152e}
+.register{background:#18b878;color:white}
+
+.small{
+font-size:14px;
+line-height:1.7;
+color:#e5e5e5;
 }
 
-.price {
-  font-size: 40px;
-  font-weight: bold;
-  color: #ffd700;
-  margin: 15px;
-}
+#status{color:#7dffb5;font-weight:bold}
 
-button {
-  width: 100%;
-  padding: 16px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 12px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.pay {
-  background: #ffd700;
-  color: #07152e;
-}
-
-.copy {
-  background: white;
-  color: #07152e;
-}
-
-.register {
-  background: #18b878;
-  color: white;
-}
-
-.small {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #e5e5e5;
-}
-
-#status {
-  color: #7dffb5;
-  font-weight: bold;
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid #ffffff33;
-  margin: 25px 0;
-}
-
-footer {
-  font-size: 13px;
-  color: #ddd;
+hr{
+border:0;
+border-top:1px solid #ffffff33;
+margin:25px 0;
 }
 </style>
 </head>
@@ -101,62 +72,53 @@ footer {
 
 <div class="card">
 
-  <h1>🏏 SPL SEASON 03</h1>
+<h1>🏏 SPL SEASON 03</h1>
+<h2>PLAYER REGISTRATION</h2>
 
-  <h2>PLAYER REGISTRATION</h2>
-  <h3>खेळाडू नोंदणी</h3>
+<div class="price">₹200</div>
+<p>Registration Fee / नोंदणी शुल्क</p>
 
-  <div class="price">₹200</div>
+<button class="pay" onclick="payUPI()">
+💳 PAY ₹200 NOW
+</button>
 
-  <p>Registration Fee / नोंदणी शुल्क</p>
+<button class="copy" onclick="copyUPI()">
+📋 COPY UPI ID
+</button>
 
-  <!-- DIRECT UPI PAYMENT -->
-  <button class="pay" onclick="payUPI()">
-    💳 PAY ₹200 NOW
-  </button>
+<p id="status"></p>
 
-  <button class="copy" onclick="copyUPI()">
-    📋 COPY UPI ID
-  </button>
+<p class="small">
+Tap PAY to open your UPI app.
+<br>
+पेमेंट करण्यासाठी PAY वर क्लिक करा.
+</p>
 
-  <p id="status"></p>
+<hr>
 
-  <p class="small">
-    Click PAY to open your UPI payment app.
-    <br>
-    पेमेंट करण्यासाठी PAY बटणावर क्लिक करा.
-  </p>
+<h2>AFTER PAYMENT</h2>
 
-  <hr>
+<p class="small">
+Complete the registration form and upload payment screenshot.
+<br><br>
+नोंदणी फॉर्म भरा आणि पेमेंट स्क्रीनशॉट अपलोड करा.
+</p>
 
-  <h2>AFTER PAYMENT</h2>
-  <h3>पेमेंट केल्यानंतर</h3>
+<button class="register" onclick="openForm()">
+📝 REGISTER NOW
+</button>
 
-  <p class="small">
-    Complete the registration form and upload your payment screenshot.
-    <br><br>
-    नोंदणी फॉर्म भरा आणि पेमेंट स्क्रीनशॉट अपलोड करा.
-  </p>
+<hr>
 
-  <button class="register" onclick="openForm()">
-    📝 REGISTER NOW
-  </button>
+<h2>🔥 BE READY, BOYS! 🔥</h2>
+<p>SPL Auction Coming Soon</p>
 
-  <hr>
+<hr>
 
-  <h2>🔥 BE READY!</h2>
-
-  <h3>SPL AUCTION COMING SOON</h3>
-
-  <p>SPL ऑक्शन लवकरच येत आहे!</p>
-
-  <hr>
-
-  <footer>
-    Swami Vivekanand Yuvak Sangh
-    <br>
-    Singinkop
-  </footer>
+<footer>
+Swami Vivekanand Yuvak Sangh<br>
+Singinkop
+</footer>
 
 </div>
 
@@ -167,36 +129,37 @@ const UPI_ID = "9480265068-2@ybl";
 const FORM_URL =
 "https://docs.google.com/forms/d/e/1FAIpQLSd8dI-Fzdon-whGkqtD8OgU0WXJN4DtXCevl4Qd2fouG0rJ3A/viewform?usp=dialog";
 
-// OPEN UPI APP DIRECTLY
-function payUPI() {
+// SIMPLE UPI PAYMENT LINK
+function payUPI(){
 
-  const upiLink =
-  "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
-  "&pn=" + encodeURIComponent("SPL Season 03") +
-  "&am=200&cu=INR&tn=" +
-  encodeURIComponent("SPL Season 03 Registration");
+const upiLink =
+"upi://pay?pa=9480265068-2@ybl" +
+"&pn=SPL%20Season%2003" +
+"&am=200.00" +
+"&cu=INR";
 
-  window.location.href = upiLink;
+window.location.href = upiLink;
+
 }
 
 // COPY UPI ID
-function copyUPI() {
+function copyUPI(){
 
-  navigator.clipboard.writeText(UPI_ID)
-  .then(() => {
-    document.getElementById("status").innerText =
-    "UPI ID Copied Successfully!";
-  })
-  .catch(() => {
-    document.getElementById("status").innerText =
-    "UPI ID: " + UPI_ID;
-  });
+navigator.clipboard.writeText(UPI_ID)
+.then(()=>{
+document.getElementById("status").innerText=
+"UPI ID Copied Successfully!";
+})
+.catch(()=>{
+document.getElementById("status").innerText=
+"UPI ID: "+UPI_ID;
+});
 
 }
 
 // OPEN REGISTRATION FORM
-function openForm() {
-  window.open(FORM_URL, "_blank");
+function openForm(){
+window.open(FORM_URL,"_blank");
 }
 
 </script>
