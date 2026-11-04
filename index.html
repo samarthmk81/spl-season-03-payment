@@ -8,86 +8,68 @@
 <title>SPL Season 03 Registration</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#06142b,#173a65);
+  color:white;
+  text-align:center;
 }
 
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #06142b, #173a65);
-  color: white;
-  text-align: center;
+.card{
+  max-width:450px;
+  margin:20px auto;
+  padding:25px;
+  background:#102446;
+  border:2px solid #d4af37;
+  border-radius:20px;
+  box-shadow:0 0 20px #0005;
 }
 
-.card {
-  max-width: 450px;
-  margin: 20px auto;
-  padding: 25px;
-  background: #102446;
-  border: 2px solid #d4af37;
-  border-radius: 20px;
-  box-shadow: 0 0 20px #0005;
+h1,h2{color:#ffd700}
+
+.price{
+  font-size:40px;
+  font-weight:bold;
+  color:#ffd700;
+  margin:20px;
 }
 
-h1, h2 {
-  color: #ffd700;
+button{
+  width:100%;
+  padding:16px;
+  margin:10px 0;
+  border:none;
+  border-radius:12px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.price {
-  font-size: 40px;
-  font-weight: bold;
-  color: #ffd700;
-  margin: 20px;
+.pay{background:#ffd700;color:#07152e}
+.copy{background:white;color:#07152e}
+.register{background:#18b878;color:white}
+
+.small{
+  font-size:14px;
+  line-height:1.7;
+  color:#e5e5e5;
 }
 
-button {
-  width: 100%;
-  padding: 16px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 12px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
+#status{color:#7dffb5;font-weight:bold}
+
+hr{
+  border:0;
+  border-top:1px solid #ffffff33;
+  margin:25px 0;
 }
 
-.pay {
-  background: #ffd700;
-  color: #07152e;
-}
-
-.copy {
-  background: white;
-  color: #07152e;
-}
-
-.register {
-  background: #18b878;
-  color: white;
-}
-
-.small {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #e5e5e5;
-}
-
-#status {
-  color: #7dffb5;
-  font-weight: bold;
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid #ffffff33;
-  margin: 25px 0;
-}
-
-footer {
-  font-size: 13px;
-  color: #ddd;
+footer{
+  font-size:13px;
+  color:#ddd;
 }
 </style>
 </head>
@@ -101,11 +83,10 @@ footer {
 <h3>खेळाडू नोंदणी</h3>
 
 <div class="price">₹200</div>
-
 <p>Registration Fee / नोंदणी शुल्क</p>
 
-<button class="pay" onclick="payUPI()">
-💳 PAY ₹200 NOW
+<button class="pay" onclick="payPaytm()">
+💳 PAY USING PAYTM
 </button>
 
 <button class="copy" onclick="copyUPI()">
@@ -115,15 +96,15 @@ footer {
 <p id="status"></p>
 
 <p class="small">
-UPI app will open. Enter ₹200 manually and complete payment.
+Paytm opens without a preset amount.
+Enter ₹200 manually.
 <br><br>
-UPI ॲप उघडेल. ₹200 स्वतः टाका आणि पेमेंट करा.
+Paytm उघडल्यानंतर ₹200 स्वतः टाका.
 </p>
 
 <hr>
 
 <h2>AFTER PAYMENT</h2>
-<h3>पेमेंट केल्यानंतर</h3>
 
 <p class="small">
 Complete the registration form and upload payment screenshot.
@@ -157,35 +138,44 @@ const UPI_ID = "9480265068-2@ybl";
 const FORM_URL =
 "https://docs.google.com/forms/d/e/1FAIpQLSd8dI-Fzdon-whGkqtD8OgU0WXJN4DtXCevl4Qd2fouG0rJ3A/viewform?usp=dialog";
 
-// OPEN UPI APP WITHOUT AUTOMATIC AMOUNT
-function payUPI() {
+// PAYTM PAYMENT
+function payPaytm(){
 
   const upiLink =
     "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
     "&pn=" + encodeURIComponent("SPL Season 03") +
     "&cu=INR";
 
-  window.location.href = upiLink;
+  const paytmLink =
+    "paytmmp://pay?url=" + encodeURIComponent(upiLink);
+
+  window.location.href = paytmLink;
+
+  // Fallback if Paytm does not open
+  setTimeout(function(){
+    window.location.href = upiLink;
+  },1500);
+
 }
 
 // COPY UPI ID
-function copyUPI() {
+function copyUPI(){
 
   navigator.clipboard.writeText(UPI_ID)
-  .then(() => {
-    document.getElementById("status").innerText =
+  .then(()=>{
+    document.getElementById("status").innerText=
     "UPI ID Copied Successfully!";
   })
-  .catch(() => {
-    document.getElementById("status").innerText =
-    "UPI ID: " + UPI_ID;
+  .catch(()=>{
+    document.getElementById("status").innerText=
+    "UPI ID: "+UPI_ID;
   });
 
 }
 
 // OPEN REGISTRATION FORM
-function openForm() {
-  window.open(FORM_URL, "_blank");
+function openForm(){
+  window.open(FORM_URL,"_blank");
 }
 
 </script>
