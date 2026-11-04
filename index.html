@@ -22,7 +22,7 @@ body {
 
 .container {
     max-width: 460px;
-    margin: 35px auto;
+    margin: 30px auto;
     background: white;
     color: #222;
     padding: 25px;
@@ -55,6 +55,25 @@ h2 {
     margin: 15px 0;
 }
 
+.qr-box {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+#qrcode {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+}
+
+#qrcode img,
+#qrcode canvas {
+    max-width: 100%;
+    height: auto;
+}
+
 button, .button {
     display: block;
     width: 100%;
@@ -66,11 +85,6 @@ button, .button {
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
-}
-
-.pay {
-    background: #198754;
-    color: white;
 }
 
 .copy {
@@ -114,15 +128,24 @@ footer {
 Registration Fee: ₹200
 </div>
 
-<p><b>UPI ID</b></p>
+<div class="qr-box">
 
-<div class="upi">
-9480265068-2@ybl
+<h3>📱 Scan & Pay</h3>
+
+<p>Scan this QR code using any UPI app</p>
+
+<div id="qrcode"></div>
+
+<p><b>Amount: ₹200</b></p>
+<p>Verify receiver name before payment.</p>
+
 </div>
 
-<button class="pay" onclick="payUPI()">
-💳 Pay Using UPI App
-</button>
+<p><b>UPI ID</b></p>
+
+<div class="upi" id="upiId">
+9480265068-2@ybl
+</div>
 
 <button class="copy" onclick="copyUPI()">
 📋 Copy UPI ID
@@ -133,11 +156,10 @@ Registration Fee: ₹200
 <b>Payment Instructions / पेमेंट सूचना</b>
 
 <ol>
-<li>Click Pay Using UPI App.</li>
-<li>Enter ₹200 manually.</li>
+<li>Scan the QR code using Google Pay / PhonePe / Paytm.</li>
+<li>₹200 should appear automatically.</li>
+<li>Check receiver name.</li>
 <li>Complete payment.</li>
-<li>If payment declines, copy the UPI ID.</li>
-<li>Pay manually using Google Pay / PhonePe / Paytm.</li>
 <li>Take a screenshot of successful payment.</li>
 <li>Click Register Now and upload payment screenshot.</li>
 </ol>
@@ -147,11 +169,10 @@ Registration Fee: ₹200
 <b>मराठी सूचना:</b>
 
 <ol>
-<li>Pay Using UPI App वर क्लिक करा.</li>
-<li>₹200 स्वतः भरा.</li>
+<li>UPI App मधून QR Code स्कॅन करा.</li>
+<li>₹200 रक्कम आपोआप दिसेल.</li>
+<li>Receiver Name तपासा.</li>
 <li>पेमेंट पूर्ण करा.</li>
-<li>पेमेंट Decline झाल्यास UPI ID कॉपी करा.</li>
-<li>UPI ID वापरून मॅन्युअली पेमेंट करा.</li>
 <li>पेमेंटचा Screenshot घ्या.</li>
 <li>Register Now वर क्लिक करून Screenshot अपलोड करा.</li>
 </ol>
@@ -171,17 +192,23 @@ Singinkop
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
 
 const UPI_ID = "9480265068-2@ybl";
 
-function payUPI() {
+const upiQR =
+"upi://pay?pa=9480265068-2@ybl&pn=SPL%20Season%2003&am=200&cu=INR";
 
-    const upiLink =
-        "upi://pay?pa=9480265068-2@ybl&pn=SPL&cu=INR";
-
-    window.location.href = upiLink;
-}
+new QRCode(document.getElementById("qrcode"), {
+    text: upiQR,
+    width: 220,
+    height: 220,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+});
 
 async function copyUPI() {
 
