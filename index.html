@@ -4,100 +4,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPL Season 03 Payment</title>
+
+<title>SPL Season 03 - Player Registration</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  padding: 20px;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #07152e, #142f57);
+  background: linear-gradient(135deg, #06142b, #173a65);
   color: white;
   text-align: center;
-  padding: 20px;
 }
+
 .card {
-  max-width: 420px;
-  margin: 30px auto;
-  background: #102446;
+  max-width: 450px;
+  margin: 20px auto;
   padding: 25px;
-  border-radius: 18px;
-  border: 1px solid #d4af37;
+  background: #102446;
+  border: 2px solid #d4af37;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #0005;
 }
-h1 { color: #ffd700; }
-.price {
-  font-size: 35px;
-  font-weight: bold;
+
+h1 {
+  color: #ffd700;
+  font-size: 30px;
+}
+
+h2 {
   color: #ffd700;
 }
+
+.price {
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffd700;
+  margin: 15px;
+}
+
 button {
   width: 100%;
-  padding: 15px;
+  padding: 16px;
   margin: 10px 0;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 17px;
   font-weight: bold;
   cursor: pointer;
 }
-.pay { background: #ffd700; color: #07152e; }
-.copy { background: white; color: #07152e; }
-.register { background: #20c997; color: white; }
-.small { font-size: 14px; color: #ddd; }
+
+.pay {
+  background: #ffd700;
+  color: #07152e;
+}
+
+.copy {
+  background: white;
+  color: #07152e;
+}
+
+.register {
+  background: #18b878;
+  color: white;
+}
+
+.small {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #e5e5e5;
+}
+
+#status {
+  color: #7dffb5;
+  font-weight: bold;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ffffff33;
+  margin: 25px 0;
+}
+
+footer {
+  font-size: 13px;
+  color: #ddd;
+}
 </style>
 </head>
 
 <body>
+
 <div class="card">
+
   <h1>🏏 SPL SEASON 03</h1>
-  <h2>Player Registration</h2>
-  <p class="price">₹200</p>
+
+  <h2>PLAYER REGISTRATION</h2>
+  <h3>खेळाडू नोंदणी</h3>
+
+  <div class="price">₹200</div>
 
   <p>Registration Fee / नोंदणी शुल्क</p>
 
-  <button class="pay" onclick="payUPI()">💳 PAY ₹200 NOW</button>
-  <button class="copy" onclick="copyUPI()">📋 COPY UPI ID</button>
+  <!-- DIRECT UPI PAYMENT -->
+  <button class="pay" onclick="payUPI()">
+    💳 PAY ₹200 NOW
+  </button>
+
+  <button class="copy" onclick="copyUPI()">
+    📋 COPY UPI ID
+  </button>
 
   <p id="status"></p>
 
-  <hr>
-
-  <h3>After Payment / पेमेंट नंतर</h3>
   <p class="small">
-    Complete your registration form and upload payment screenshot.
-    <br><br>
-    पेमेंट केल्यानंतर नोंदणी फॉर्म भरा आणि पेमेंट स्क्रीनशॉट अपलोड करा.
+    Click PAY to open your UPI payment app.
+    <br>
+    पेमेंट करण्यासाठी PAY बटणावर क्लिक करा.
   </p>
 
-  <button class="register" onclick="openForm()">📝 REGISTER NOW</button>
+  <hr>
+
+  <h2>AFTER PAYMENT</h2>
+  <h3>पेमेंट केल्यानंतर</h3>
+
+  <p class="small">
+    Complete the registration form and upload your payment screenshot.
+    <br><br>
+    नोंदणी फॉर्म भरा आणि पेमेंट स्क्रीनशॉट अपलोड करा.
+  </p>
+
+  <button class="register" onclick="openForm()">
+    📝 REGISTER NOW
+  </button>
 
   <hr>
 
-  <h2>Be Ready! 🔥</h2>
-  <h3>SPL Auction Coming Soon</h3>
+  <h2>🔥 BE READY!</h2>
+
+  <h3>SPL AUCTION COMING SOON</h3>
+
   <p>SPL ऑक्शन लवकरच येत आहे!</p>
 
-  <p class="small">Swami Vivekanand Yuvak Sangh, Singinkop</p>
+  <hr>
+
+  <footer>
+    Swami Vivekanand Yuvak Sangh
+    <br>
+    Singinkop
+  </footer>
+
 </div>
 
 <script>
-const upi = "9480265068-2@ybl";
-const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSd8dI-Fzdon-whGkqtD8OgU0WXJN4DtXCevl4Qd2fouG0rJ3A/viewform?usp=dialog";
 
+const UPI_ID = "9480265068-2@ybl";
+
+const FORM_URL =
+"https://docs.google.com/forms/d/e/1FAIpQLSd8dI-Fzdon-whGkqtD8OgU0WXJN4DtXCevl4Qd2fouG0rJ3A/viewform?usp=dialog";
+
+// OPEN UPI APP DIRECTLY
 function payUPI() {
-  const url = "upi://pay?pa=" + encodeURIComponent(upi) +
-    "&pn=" + encodeURIComponent("SPL Season 03") +
-    "&am=200&cu=INR";
-  window.location.href = url;
+
+  const upiLink =
+  "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
+  "&pn=" + encodeURIComponent("SPL Season 03") +
+  "&am=200&cu=INR&tn=" +
+  encodeURIComponent("SPL Season 03 Registration");
+
+  window.location.href = upiLink;
 }
 
+// COPY UPI ID
 function copyUPI() {
-  navigator.clipboard.writeText(upi)
-    .then(() => document.getElementById("status").innerText = "UPI ID Copied!");
+
+  navigator.clipboard.writeText(UPI_ID)
+  .then(() => {
+    document.getElementById("status").innerText =
+    "UPI ID Copied Successfully!";
+  })
+  .catch(() => {
+    document.getElementById("status").innerText =
+    "UPI ID: " + UPI_ID;
+  });
+
 }
 
+// OPEN REGISTRATION FORM
 function openForm() {
-  window.open(formURL, "_blank");
+  window.open(FORM_URL, "_blank");
 }
+
 </script>
+
 </body>
 </html>
